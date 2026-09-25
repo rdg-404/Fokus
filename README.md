@@ -1,6 +1,6 @@
 # Fokus
 
-> Projeto com objeto de criar um time para escolha, utilizando-se de JavaScript (Elementos DOM) para manipulação
+> Projeto com objeto de criar um time, utilizando-se de JavaScript (Elementos DOM) para manipulação
 
 ---
 
