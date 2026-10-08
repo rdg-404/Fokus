@@ -6,6 +6,8 @@ const banner = document.querySelector('.app__image')
 const titulo = document.querySelector('.app__title')
 const botoes = document.querySelectorAll('.app__card-button')
 const startPauseBt = document.querySelector('#start-pause')
+const startPauseIcon = document.querySelector('.app__card-primary-butto-icon')
+const startPauseTexto = document.querySelector('.app__card-primary-button-text')
 const tempoNaTela = document.querySelector('#timer')
 
 let tempoDecorridoEmSegundos = 1500
@@ -82,12 +84,16 @@ function iniciarOuPausar() {
         zerar()
         return
     }
+    startPauseIcon.setAttribute('src', '/imagens/pause.png')
+    startPauseTexto.textContent = 'Pausar'
     intervaloId = setInterval(contagemRegressiva, 1000)
 }
 
 function zerar() {
     clearInterval(intervaloId)
     intervaloId = null
+    startPauseIcon.setAttribute('src', '/imagens/play_arrow.png')
+    startPauseTexto.textContent = tempoDecorridoEmSegundos > 0 ? 'Continuar' : 'Começar'
 }
 
 mostrarTempo()
