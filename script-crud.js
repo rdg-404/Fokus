@@ -8,6 +8,7 @@ const ulTarefas = document.querySelector('.app__section-task-list')
 
 
 const tarefas = JSON.parse(localStorage.getItem('tarefas')) || []
+let tarefaSelecionada = null
 
 
 function atualizarTarefas() {
@@ -37,7 +38,7 @@ function criarElementoTarefa(tarefa) {
     botao.classList.add('app_button-edit')
 
     botao.onclick = () => {
-        debugger
+        // debugger
         const novaTarefa = prompt('Digite a nova tarefa:')
         if (novaTarefa) {
             paragrafo.textContent = novaTarefa
@@ -57,11 +58,18 @@ function criarElementoTarefa(tarefa) {
     // ao clicar na lista
     li.onclick = () => {
         const itens = document.querySelectorAll('.app__section-task-list-item')
-
+        
         itens.forEach(item => {
             item.classList.remove('app__section-task-list-item-active')
         })
-        
+
+        if (tarefaSelecionada === tarefa) {
+            descricaoTarefa.textContent = ''
+            tarefaSelecionada = null
+            return
+        }
+
+        tarefaSelecionada = tarefa
         descricaoTarefa.textContent = tarefa.descricao
         li.classList.add('app__section-task-list-item-active')
     }
@@ -72,7 +80,7 @@ function criarElementoTarefa(tarefa) {
 
 btnCancelarForm.addEventListener('click', () => {
     formTextarea.value = '',
-    formAddNovaTarefa.classList.add('hidden')
+        formAddNovaTarefa.classList.add('hidden')
 })
 
 btnAddNovaTarefa.addEventListener('click', () => {
