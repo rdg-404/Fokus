@@ -41,7 +41,7 @@ function alterarContexto(contexto) {
 
 
 focoBt.addEventListener('click', () => {
-    tempoDecorridoEmSegundos = 1500
+    tempoDecorridoEmSegundos = 15
     alterarContexto('foco')
     focoBt.classList.add('active')
 })
@@ -67,8 +67,13 @@ function mostrarTempo(){
 
 const contagemRegressiva = () => {
     if (tempoDecorridoEmSegundos <= 0) {
-        zerar()
         alert('Tempo finalizado!')
+        const focoAtivo = html.getAttribute('data-contexto') == 'foco'
+        if(focoAtivo){
+            const evento = new CustomEvent('focoFinalizado')
+            document.dispatchEvent(evento)
+        }
+        zerar()
         return
     }
     tempoDecorridoEmSegundos -= 1
